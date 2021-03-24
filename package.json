@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "check": "rm -fr build && npm run lint:fix && npm run build && npm run test",
+    "check": "npm run clean && npm install && npm run lint:fix && npm run build && npm run test",
+    "clean": "rm -fr build node_modules",
     "lint": "eslint \"**/*.{js,ts}\"",
     "lint:fix": "eslint \"**/*.{js,ts}\" --fix",
     "test": "jest",
