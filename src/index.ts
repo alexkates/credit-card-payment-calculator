@@ -1,1 +1,3 @@
-console.log('it worked');
+import { createPaymentSchedule } from './CreatePaymentSchedule';
+
+export { createPaymentSchedule };
