@@ -6,6 +6,12 @@ export type CreatePaymentScheduleRequest = {
   balance: number;
 
   /**
+   * Set to true to include all payments.
+   * Defaults to false.
+   */
+  includePayments?: boolean;
+
+  /**
    * The annualized interest rate.
    * e.g., .129
    */

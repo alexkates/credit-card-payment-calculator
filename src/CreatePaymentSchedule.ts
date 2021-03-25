@@ -25,16 +25,21 @@ export const createPaymentSchedule = (request: CreatePaymentScheduleRequest): Pa
     balance = payment.balance;
   }
 
+  const firstPaymentAmount = payments[0].payment;
   const monthsToPayOff = payments.length;
   const totalInterestPaid = round(payments.reduce((sum, p) => sum + p.interest, 0));
   const totalPrincipalPaid = round(payments.reduce((sum, p) => sum + p.principal, 0));
   const totalRepaymentAmount = round(totalInterestPaid + totalPrincipalPaid);
 
-  return {
+  const paymentSchedule: PaymentSchedule = {
+    firstPaymentAmount,
     monthsToPayOff,
-    payments,
     totalInterestPaid,
     totalPrincipalPaid,
     totalRepaymentAmount,
   };
+
+  if (request.includePayments === true) paymentSchedule.payments = payments;
+
+  return paymentSchedule;
 };
