@@ -44,7 +44,7 @@ npm test # or npm run test:watch
 
 Alex Kates – [@thealexkates](https://twitter.com/thealexkates)
 
-Distributed under the MIT license. See ``LICENSE`` for more information.
+Distributed under the MIT license. See [this license file](./LICENSE) for more information.
 
 
 
