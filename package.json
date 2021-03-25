@@ -1,12 +1,12 @@
 {
-  "name": "credit-card-repayment-calculator",
+  "name": "credit-card-payment-calculator",
   "version": "0.0.2",
-  "description": "Calculate a credit card repayment schedule",
+  "description": "Calculate a credit card payment schedule",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexkates/credit-card-repayment-calculator.git"
+    "url": "git+https://github.com/alexkates/credit-card-payment-calculator.git"
   },
   "files": [
     "build"
