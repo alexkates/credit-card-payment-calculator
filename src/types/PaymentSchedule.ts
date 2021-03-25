@@ -1,9 +1,9 @@
 import { Payment } from './Payment';
 
 export type PaymentSchedule = {
-  monthsToPayOff: number,
+  monthsToPayOff: number;
   payments: Payment[];
-  totalInterestPaid: number,
-  totalPrincipalPaid: number,
-  totalRepaymentAmount: number,
+  totalInterestPaid: number;
+  totalPrincipalPaid: number;
+  totalRepaymentAmount: number;
 };
