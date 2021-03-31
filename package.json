@@ -1,6 +1,6 @@
 {
   "name": "credit-card-payment-calculator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Calculate a credit card payment schedule",
   "main": "build/index.js",
   "module": "build/index.esm.js",
