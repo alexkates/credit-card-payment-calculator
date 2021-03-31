@@ -20,7 +20,13 @@
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
-  "keywords": [],
+  "keywords": [
+    "creditcard",
+    "credit-card",
+    "credit",
+    "debt",
+    "payment"
+  ],
   "author": "Alex Kates",
   "license": "MIT",
   "devDependencies": {
