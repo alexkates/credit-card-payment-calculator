@@ -1,13 +1,13 @@
 import { createPaymentSchedule as sut } from './CreatePaymentSchedule';
 import { CreatePaymentScheduleRequest } from './types/CreatePaymentScheduleRequest';
 import { PaymentSchedule } from './types/PaymentSchedule';
-import { ExpectedPaymentSchedule as expected } from './expectedPaymentSchedule';
+import { ExpectedPaymentSchedule as expected } from './ExpectedVariablePaymentSchedule';
 
 describe('createPaymentSchedule tests', () => {
   let request: CreatePaymentScheduleRequest;
   let actual: PaymentSchedule;
 
-  describe('when payments should be included', () => {
+  describe('when payments are based on minPaymentPercentOfBalance', () => {
     beforeAll(() => {
       request = {
         balance: 10000,

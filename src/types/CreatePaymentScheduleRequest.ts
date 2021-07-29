@@ -29,4 +29,11 @@ export type CreatePaymentScheduleRequest = {
    * e.g., 25
    */
   minPaymentForLowBalance: number;
+
+  /**
+   * If this is true, use the greater of minPaymentPercentOfBalance * balance and minPaymentForLowBalance
+   * as a fixed monthly payment.
+   *
+   */
+  useFixedMonthlyPayment?: boolean;
 };
