@@ -7,22 +7,35 @@ import { round } from './Round';
 export const createPaymentSchedule = (request: CreatePaymentScheduleRequest): PaymentSchedule => {
   const payments: Payment[] = [];
 
-  const { balance: startingBalance, interestRate, minPaymentForLowBalance, minPaymentPercentOfBalance } = request;
+  const {
+    balance: startingBalance,
+    fixedPayment,
+    interestRate,
+    minPaymentForLowBalance,
+    minPaymentPercentOfBalance,
+  } = request;
 
   const firstPayment = createPayment(
     startingBalance,
+    fixedPayment,
     interestRate,
     minPaymentForLowBalance,
     minPaymentPercentOfBalance,
   );
   payments.push(firstPayment);
 
-  let balance = firstPayment.balance;
-  while (balance > 0) {
-    const payment = createPayment(balance, interestRate, minPaymentForLowBalance, minPaymentPercentOfBalance);
+  let remainingBalance = firstPayment.balance;
+  while (remainingBalance > 0) {
+    const payment = createPayment(
+      remainingBalance,
+      fixedPayment,
+      interestRate,
+      minPaymentForLowBalance,
+      minPaymentPercentOfBalance,
+    );
     payments.push(payment);
 
-    balance = payment.balance;
+    remainingBalance = payment.balance;
   }
 
   const firstPaymentAmount = payments[0].payment;

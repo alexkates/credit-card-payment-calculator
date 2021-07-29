@@ -6,6 +6,12 @@ export type CreatePaymentScheduleRequest = {
   balance: number;
 
   /**
+   * If provided, used instead of the minPaymentPercentOfBalance to calculate the payment schedule.
+   * e.g., 200
+   */
+  fixedPayment?: number;
+
+  /**
    * Set to true to include all payments.
    * Defaults to false.
    */
@@ -29,11 +35,4 @@ export type CreatePaymentScheduleRequest = {
    * e.g., 25
    */
   minPaymentForLowBalance: number;
-
-  /**
-   * If this is true, use the greater of minPaymentPercentOfBalance * balance and minPaymentForLowBalance
-   * as a fixed monthly payment.
-   *
-   */
-  useFixedMonthlyPayment?: boolean;
 };

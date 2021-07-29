@@ -1,11 +1,37 @@
 import { createPaymentSchedule as sut } from './CreatePaymentSchedule';
 import { CreatePaymentScheduleRequest } from './types/CreatePaymentScheduleRequest';
+import { ExpectedPaymentSchedule as expectedFixPaymentSchedule } from './ExpectedFixedPaymentSchedule';
+import { ExpectedPaymentSchedule as expectedVariablePaymentSchedule } from './ExpectedVariablePaymentSchedule';
 import { PaymentSchedule } from './types/PaymentSchedule';
-import { ExpectedPaymentSchedule as expected } from './ExpectedVariablePaymentSchedule';
 
 describe('createPaymentSchedule tests', () => {
   let request: CreatePaymentScheduleRequest;
   let actual: PaymentSchedule;
+
+  describe('when payments are based on fixedPayment', () => {
+    beforeAll(() => {
+      request = {
+        balance: 10000,
+        fixedPayment: 3000,
+        includePayments: true,
+        interestRate: 0.219,
+        minPaymentForLowBalance: 25,
+        minPaymentPercentOfBalance: 0.01,
+      };
+
+      actual = sut(request);
+    });
+
+    it('should create the correct number of payments', () => {
+      expect(actual.payments.length).toEqual(expectedFixPaymentSchedule.payments.length);
+    });
+
+    it('should create the correct payments', () => {
+      actual.payments.forEach((actualPayment, index) => {
+        expect(actualPayment).toEqual(expectedFixPaymentSchedule.payments[index]);
+      });
+    });
+  });
 
   describe('when payments are based on minPaymentPercentOfBalance', () => {
     beforeAll(() => {
@@ -21,33 +47,33 @@ describe('createPaymentSchedule tests', () => {
     });
 
     it('should create the correct number of payments', () => {
-      expect(actual.payments.length).toEqual(expected.payments.length);
+      expect(actual.payments.length).toEqual(expectedVariablePaymentSchedule.payments.length);
     });
 
     it('should create the correct payments', () => {
       actual.payments.forEach((actualPayment, index) => {
-        expect(actualPayment).toEqual(expected.payments[index]);
+        expect(actualPayment).toEqual(expectedVariablePaymentSchedule.payments[index]);
       });
     });
 
     it('should create the correct monthsToPayOff', () => {
-      expect(actual.monthsToPayOff).toEqual(expected.monthsToPayOff);
+      expect(actual.monthsToPayOff).toEqual(expectedVariablePaymentSchedule.monthsToPayOff);
     });
 
     it('should create the correct totalInterestPaid', () => {
-      expect(actual.totalInterestPaid).toEqual(expected.totalInterestPaid);
+      expect(actual.totalInterestPaid).toEqual(expectedVariablePaymentSchedule.totalInterestPaid);
     });
 
     it('should create the correct totalPrincipalPaid', () => {
-      expect(actual.totalPrincipalPaid).toEqual(expected.totalPrincipalPaid);
+      expect(actual.totalPrincipalPaid).toEqual(expectedVariablePaymentSchedule.totalPrincipalPaid);
     });
 
     it('should create the correct totalRepaymentAmount', () => {
-      expect(actual.totalRepaymentAmount).toEqual(expected.totalRepaymentAmount);
+      expect(actual.totalRepaymentAmount).toEqual(expectedVariablePaymentSchedule.totalRepaymentAmount);
     });
 
     it('should create the correct firstPaymentAmount', () => {
-      expect(actual.firstPaymentAmount).toEqual(expected.payments[0].payment);
+      expect(actual.firstPaymentAmount).toEqual(expectedVariablePaymentSchedule.payments[0].payment);
     });
   });
 
